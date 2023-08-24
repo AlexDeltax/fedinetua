@@ -22,7 +22,7 @@ PROJECT_DIR = os.path.dirname(BASE_DIR)
 DEBUG = False
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-fwn-km2odsaw&rdk$pi)79&@38mm8rfk)88^f1m%buvw@29ckm"
+SECRET_KEY = os.environ["SECRET_KEY"]
 
 # SECURITY WARNING: define the correct hosts in production!
 ALLOWED_HOSTS = ["*"]
@@ -201,6 +201,7 @@ WAGTAILADMIN_BASE_URL = "https://fedi.net.ua"
 
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
+CSRF_TRUSTED_ORIGINS = ["https://fedi.net.ua"]
 
 LOGGING = {
     "version": 1,
