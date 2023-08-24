@@ -1,0 +1,12 @@
+<div class="uk-grid uk-child-width-1-1 uk-margin-xlarge">
+    <div class="uk-width-1-1">
+        <h3 class="uk-heading-medium uk-margin-medium uk-text-center uk-scrollspy-inview">
+            {{ self.title }}
+        </h3>
+        {% if self.text %}
+        <div class="uk-panel uk-text-large uk-width-2xlarge uk-margin-auto uk-text-center uk-scrollspy-inview">
+            {{ self.text }}
+        </div>
+        {% endif %}
+    </div>
+</div>

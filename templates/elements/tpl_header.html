@@ -1,0 +1,46 @@
+{% load static server_menu %}
+<nav class="uk-navbar-container">
+    <div class="uk-container">
+        <div uk-navbar>
+            <div class="uk-navbar-center">
+                <!--<div class="uk-navbar-center-left">
+                    <ul class="uk-navbar-nav">
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>-->
+                <a class="uk-navbar-item uk-logo" href="/">
+                    <img src="{% static 'svg/logo-light.svg' %}" alt="fedi.net.ua logo" style="height: 52px;">
+                </a>
+                <div class="uk-navbar-center-right">
+                    <ul class="uk-navbar-nav">
+                        <li>
+                            <a href="#">Servers</a>
+                            {% server_menu as servers %}
+                            <div class="uk-navbar-dropdown" uk-drop="boundary: !.uk-navbar; stretch: x; flip: false">
+                                <ul class="uk-nav uk-nav-secondary uk-grid-small uk-grid uk-drop-grid uk-child-width-1-2">
+                                    {% for server in servers %}
+                                    <li>
+                                        <a href="{{ server.url }}" class="uk-preserve-width">
+                                            <div class="uk-grid uk-grid-small uk-flex-middle">
+                                                <div class="uk-width-auto">
+                                                    <img src="{{ server.menu_icon.url }}" width="52" height="52" alt="" loading="eager">
+                                                </div>
+                                                <div class="uk-width-expand">
+                                                    {{ server.title }}
+                                                    <div class="uk-nav-subtitle">
+                                                        {{ server.menu_subtitle }}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>

@@ -1,0 +1,15 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+wagtail = "==5.1.1"
+psycopg2-binary = "==2.9.6"
+django-model-utils = "==4.3.1"
+wagtailsvg = "==0.0.37"
+
+[dev-packages]
+
+[requires]
+python_version = "3.11"
