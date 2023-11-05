@@ -3,16 +3,18 @@ version: '3.8'
 services:
 
   redis-stack:
+    container_name: fedinetua-redis
     image: redis/redis-stack:latest
     ports:
       - "127.0.0.1:6389:6379"
       - "127.0.0.1:8081:8001"
     volumes:
-      - redis-stack-data:/data
+      - fedinetua_redis_data:/data
     environment:
       REDIS_ARGS: "--save 60 1000 --appendonly yes"
 
   db:
+    container_name: fedinetua-db
     build: db
     ports:
       - "127.0.0.1:5436:5432"
@@ -20,11 +22,12 @@ services:
       - POSTGRES_PASSWORD=s3cr3t
       - PGPASSWORD
     volumes:
-      - db_volume:/var/lib/postgresql/data
+      - fedinetua_db_volume:/var/lib/postgresql/data
     command: postgres -c 'config_file=/etc/postgresql/postgresql.conf'
 
   backend:
     image: fedinetua:v1
+    container_name: fedinetua-backend
     build: ..
     ulimits:
       nofile:
@@ -45,6 +48,7 @@ services:
 
   migrate:
     build: ..
+    container_name: fedinetua-migrate
     image: backend
     command: python manage.py migrate
     env_file:
@@ -53,5 +57,5 @@ services:
       - db
 
 volumes:
-  db_volume:
-  redis-stack-data:
+  fedinetua_db_volume:
+  fedinetua_redis_data:

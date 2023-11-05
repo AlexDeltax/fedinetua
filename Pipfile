@@ -4,8 +4,8 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-wagtail = "==5.1.1"
-psycopg2-binary = "==2.9.6"
+wagtail = "==5.2.0"
+psycopg2-binary = "==2.9.9"
 django-model-utils = "==4.3.1"
 wagtailsvg = "==0.0.37"
 

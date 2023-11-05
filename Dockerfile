@@ -1,4 +1,4 @@
-FROM archlinux:base-devel-20230910.0.177821 as base
+FROM archlinux:latest as base
 
 RUN pacman -Syy
 RUN pacman -S --noconfirm pango cairo libwebp gdk-pixbuf2 \

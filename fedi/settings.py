@@ -35,6 +35,7 @@ ALLOWED_HOSTS = ["*"]
 
 PROJECT_APPS = [
     "core",
+    "blog",
     "home",
 ]
 

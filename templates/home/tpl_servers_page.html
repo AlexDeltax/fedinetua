@@ -5,7 +5,7 @@
     {% for block in page.body %}
         {% include_block block %}
     {% endfor %}
-    <div class="uk-container uk-container-large uk-margin-large-bottom">
+    <div class="uk-container uk-container-large uk-margin-top uk-margin-large-bottom">
         <div class="uk-child-width-1-3@l uk-child-width-1-2@m" uk-grid uk-height-match="target: > div > div > .uk-card-body">
             {% for instance in self.server_instances.all %}
                 <div>

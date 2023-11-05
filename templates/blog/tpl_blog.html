@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load static wagtailcore_tags wagtailimages_tags %}
+
+{% block content %}
+    <div class="uk-container">
+		<nav class="nav-scroll">
+			<ul class="uk-subnav uk-flex uk-flex-between uk-flex-nowrap">
+				<li class="uk-active"><a href="#">World</a></li>
+				<li><a href="#">Politics</a></li>
+				<li><a href="#">Technology</a></li>
+				<li><a href="#">Trends</a></li>
+				<li><a href="#">Social Media</a></li>
+				<li><a href="#">People</a></li>
+				<li><a href="#">Science</a></li>
+				<li><a href="#">Opinion</a></li>
+				<li><a href="#">Culture</a></li>
+				<li><a href="#">Community</a></li>
+			</ul>
+		</nav>
+	</div>
+    <a href="{% pageurl blog_home %}">
+        <div
+          class="blog-hero-category tag-text {% if self.slug == blog_home.slug %}blog-hero-category-selected{% endif %}">
+          All Categories
+        </div>
+      </a>
+      {% for category in categories %}
+      <a href="{% pageurl category %}">
+        <div
+          class="blog-hero-category tag-text {% if self.slug == category.slug %}blog-hero-category-selected{% endif %}">
+          {{ category.title }}
+        </div>
+      </a>
+      {% endfor %}
+
+    {% for article in articles %}
+        {% if forloop.first or articles|length <= 2 %}
+            {% include 'elements/tpl_card.html' with card=article css_class="full-width" %}
+        {% else %}
+            {% include 'elements/tpl_card.html' with card=article small_card=True %}
+        {% endif %}
+    {% endfor %}
+{% endblock content %}
