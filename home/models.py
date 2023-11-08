@@ -12,7 +12,7 @@ from core.models import MenuModel
 
 
 class HomePage(Page):
-    pass
+    subpage_types = ["home.Servers", "blog.Home"]
 
 
 class HeaderSection(blocks.StructBlock):
@@ -56,6 +56,9 @@ class Servers(Page, MenuModel):
     ]
 
     settings_panels = Page.settings_panels + MenuModel.menu_panel
+
+    parent_page_types = ["home.HomePage"]
+    subpage_types = []
 
 
 class Instance(TimeStampedModel, Orderable):

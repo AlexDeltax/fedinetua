@@ -1,81 +1,19 @@
 <!-- templates/blog/elements/tpl_card.html -->
 {% load static wagtailcore_tags wagtailimages_tags %}
-<div class="blog-list-item {{ css_class }}">
-
-  <a href="{% pageurl card %}">
-    {% if small_card %}
-      <picture>
-        {% image card.display_image max-650x300 format-avif as image_avif %}
-        {% image card.display_image max-1300x600 format-avif as image_avif_2x %}
-        <source srcset="{{ image_avif.url }}, {{ image_avif_2x.url }} 2x" type="image/avif">
-
-        {% image card.display_image max-650x300 format-webp as image_webp %}
-        {% image card.display_image max-1300x600 format-webp as image_webp_2x %}
-        <source srcset="{{ image_webp.url }}, {{ image_webp_2x.url }}" type="image/webp">
-
-        {% image card.display_image max-650x300 format-png as image_png %}
-        {% image card.display_image max-1300x600 format-png as image_png_2x %}
-        <source srcset="{{ image_png.url }}, {{ image_png_2x.url }}" type="image/png">
-
-        {% image card.display_image max-650x300 format-png as image_png %}
-        <img src="{{ image_png.url }}" class="list-item-image">
-      </picture>
-    {% else %}
-      <picture>
-        {% image card.display_image max-650x300 format-avif as image_avif %}
-        {% image card.display_image max-1300x600 format-avif as image_avif_2x %}
-        <source srcset="{{ image_avif.url }}, {{ image_avif_2x.url }} 2x" type="image/avif">
-
-        {% image card.display_image max-650x300 format-webp as image_webp %}
-        {% image card.display_image max-1300x600 format-webp as image_webp_2x %}
-        <source srcset="{{ image_webp.url }}, {{ image_webp_2x.url }}" type="image/webp">
-
-        {% image card.display_image max-650x300 format-png as image_png %}
-        {% image card.display_image max-1300x600 format-png as image_png_2x %}
-        <source srcset="{{ image_png.url }}, {{ image_png_2x.url }}" type="image/png">
-
-        {% image card.display_image max-650x300 format-png as image_png %}
-        <img src="{{ image_png.url }}" class="list-item-image">
-      </picture>
-    {% endif %}
-  </a>
-  <div class="list-item-content">
-    <div class="list-item-data">
-      <div class="list-item-date tag-text">
-        <!-- Sunday , 1 Jan 2023 -->
-        {% if small_card %}
-          {{ card.first_published_at|date:"M jS, Y" }}
-        {% else %}
-          {{ card.first_published_at|date:"l, F jS, Y" }}
-        {% endif %}
-      </div>
-      <a class="list-item-tags" href="{{ card.get_parent.url }}">
-        <div class="list-item-tag tag-text">
-          {{ card.get_parent.title }}
+<div>
+    <div class="uk-card uk-card-default uk-card-small">
+        <div class="uk-card-media-top">
+            {% image post.image fill-600x400 %}
         </div>
-      </a>
-    </div>
-    <div class="h4 list-item-title">
-      <a href="{% pageurl card %}">
-        {{ card.title }}
-      </a>
-    </div>
-    {% if small_card %}
-      <div class="list-item-description">
-        {{ card.description|truncatechars:100 }}
-      </div>
-    {% else %}
-      <div class="list-item-description">
-        {{ card.description|truncatechars:255 }}
-      </div>
-    {% endif %}
-    <div class="list-item-read-more tag-text">
-      <a href="{% pageurl card %}">
-              <span>
+        <div class="uk-card-body">
+            <h4 class="uk-card-title">{{ post.title }}</h4>
+            {{ post.description|truncatechars:100 }}
+        </div>
+        <div class="uk-card-footer">
+            <a class="uk-button uk-button-default uk-width-1-1" href="{% pageurl post %}">
                 Read more
-              </span>
-      </a>
+            </a>
+        </div>
     </div>
-  </div>
 </div>
 <!-- templates/blog/elements/tpl_card.html -->

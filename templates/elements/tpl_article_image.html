@@ -1,0 +1,5 @@
+{% load wagtailimages_tags %}
+<div>
+    {% image self max-900x1200 format-png as image_png %}
+    <img src="{{ image_png.url }}" width="900" height="1200" alt="Image">
+</div>

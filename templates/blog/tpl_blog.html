@@ -2,42 +2,24 @@
 {% load static wagtailcore_tags wagtailimages_tags %}
 
 {% block content %}
-    <div class="uk-container">
+    <div class="uk-container uk-container-large uk-margin-top uk-margin-large-bottom">
 		<nav class="nav-scroll">
-			<ul class="uk-subnav uk-flex uk-flex-between uk-flex-nowrap">
-				<li class="uk-active"><a href="#">World</a></li>
-				<li><a href="#">Politics</a></li>
-				<li><a href="#">Technology</a></li>
-				<li><a href="#">Trends</a></li>
-				<li><a href="#">Social Media</a></li>
-				<li><a href="#">People</a></li>
-				<li><a href="#">Science</a></li>
-				<li><a href="#">Opinion</a></li>
-				<li><a href="#">Culture</a></li>
-				<li><a href="#">Community</a></li>
+			<ul class="uk-subnav uk-flex uk-flex-center uk-flex-nowrap">
+				<li {% if self.slug == blog_home.slug %}class="uk-active"{% endif %}>
+                    <a href="{% pageurl blog_home %}">All</a>
+                </li>
+                {% for category in categories %}
+				<li {% if self.slug == category.slug %}class="uk-active"{% endif %}>
+                    <a href="{% pageurl category %}">{{ category.title }}</a>
+                </li>
+                {% endfor %}
 			</ul>
 		</nav>
-	</div>
-    <a href="{% pageurl blog_home %}">
-        <div
-          class="blog-hero-category tag-text {% if self.slug == blog_home.slug %}blog-hero-category-selected{% endif %}">
-          All Categories
-        </div>
-      </a>
-      {% for category in categories %}
-      <a href="{% pageurl category %}">
-        <div
-          class="blog-hero-category tag-text {% if self.slug == category.slug %}blog-hero-category-selected{% endif %}">
-          {{ category.title }}
-        </div>
-      </a>
-      {% endfor %}
 
-    {% for article in articles %}
-        {% if forloop.first or articles|length <= 2 %}
-            {% include 'elements/tpl_card.html' with card=article css_class="full-width" %}
-        {% else %}
-            {% include 'elements/tpl_card.html' with card=article small_card=True %}
-        {% endif %}
-    {% endfor %}
+        <div class="uk-child-width-1-3@l uk-child-width-1-2@m" uk-grid uk-height-match="target: > div > div > .uk-card-body">
+            {% for post in posts %}
+                {% include 'elements/tpl_card.html' with post=post %}
+            {% endfor %}
+        </div>
+    </div>
 {% endblock content %}

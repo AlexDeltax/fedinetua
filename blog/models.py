@@ -5,6 +5,7 @@ from wagtail import blocks
 from wagtail.admin.panels import FieldPanel
 from wagtail.fields import StreamField
 from wagtail.models import Page
+from wagtail.images.blocks import ImageChooserBlock
 
 from core.models import MenuModel
 from core.utils import items_pagination
@@ -114,9 +115,18 @@ class Category(Page, MenuModel):
 class Post(Page):
     template = "blog/tpl_post_page.html"
 
+    image = models.ForeignKey(
+        "wagtailimages.Image",
+        null=True,
+        on_delete=models.SET_NULL,
+        related_name="+",
+        verbose_name=_("Image"),
+    )
+    description = models.TextField(default="", blank=True)
     body = StreamField(
         [
             ("text", blocks.RichTextBlock()),
+            ("image", ImageChooserBlock(template="elements/tpl_article_image.html")),
             ("html", blocks.RawHTMLBlock()),
         ],
         blank=True,
@@ -133,12 +143,17 @@ class Post(Page):
     )
 
     content_panels = Page.content_panels + [
+        FieldPanel("image"),
+        FieldPanel("description"),
         FieldPanel("body"),
     ]
 
     promote_panels = Page.promote_panels + [
         FieldPanel("seo_img"),
     ]
+
+    parent_page_types = ["blog.Category"]
+    subpage_types = []
 
     class Meta:
         verbose_name = _("Blog Post")

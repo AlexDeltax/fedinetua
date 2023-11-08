@@ -2,7 +2,19 @@
 {% load static wagtailcore_tags wagtailimages_tags %}
 
 {% block content %}
-    {% for block in page.body %}
-        {% include_block block %}
-    {% endfor %}
+    <div class="uk-container uk-container-small uk-margin-top uk-margin-bottom">
+        <article class="uk-article">
+            <h1 class="uk-article-title">
+                {{ self.title }}
+            </h1>
+            <p class="uk-article-meta">
+                Written by {{ self.owner }} on
+                <time datetime="{{ self.first_published_at|date:'c' }}">{{ self.first_published_at|date:'l, j N Y' }}</time>.
+                Posted in <a href="{% pageurl self.get_parent %}">{{ self.get_parent }}</a>
+            </p>
+            {% for block in page.body %}
+                {% include_block block %}
+            {% endfor %}
+        </article>
+    </div>
 {% endblock content %}
