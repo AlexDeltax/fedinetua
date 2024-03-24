@@ -34,7 +34,6 @@ class Servers(Page, MenuModel):
             ("html", blocks.RawHTMLBlock()),
         ],
         blank=True,
-        use_json_field=True,
     )
     seo_img = models.ForeignKey(
         "wagtailimages.Image",

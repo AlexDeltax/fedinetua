@@ -62,9 +62,6 @@ CORE_APPS = [
 ]
 
 ADDITIONAL_APPS = [
-    "wagtailsvg",
-    "wagtail.contrib.modeladmin",
-    "generic_chooser",
 ]
 
 INSTALLED_APPS = CORE_APPS + PROJECT_APPS + ADDITIONAL_APPS
@@ -181,8 +178,6 @@ STATIC_URL = "/static/"
 
 MEDIA_ROOT = os.path.join(PROJECT_DIR, "media")
 MEDIA_URL = "/media/"
-
-WAGTAILSVG_UPLOAD_FOLDER = "svg"
 
 # Wagtail settings
 

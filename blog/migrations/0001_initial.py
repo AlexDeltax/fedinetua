@@ -12,7 +12,6 @@ class Migration(migrations.Migration):
     dependencies = [
         ("wagtailimages", "0025_alter_image_file_alter_rendition_file"),
         ("wagtailcore", "0089_log_entry_data_json_null_to_object"),
-        ("wagtailsvg", "0005_alter_svg_file"),
     ]
 
     operations = [
@@ -133,7 +132,7 @@ class Migration(migrations.Migration):
                         null=True,
                         on_delete=django.db.models.deletion.SET_NULL,
                         related_name="+",
-                        to="wagtailsvg.svg",
+                        to="wagtailimages.image",
                     ),
                 ),
                 (

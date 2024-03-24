@@ -30,7 +30,6 @@ class Home(Page):
             ("html", blocks.RawHTMLBlock()),
         ],
         blank=True,
-        use_json_field=True,
     )
 
     seo_img = models.ForeignKey(
@@ -80,7 +79,6 @@ class Category(Page, MenuModel):
             ("html", blocks.RawHTMLBlock()),
         ],
         blank=True,
-        use_json_field=True,
     )
 
     seo_img = models.ForeignKey(
@@ -130,7 +128,6 @@ class Post(Page):
             ("html", blocks.RawHTMLBlock()),
         ],
         blank=True,
-        use_json_field=True,
     )
     seo_img = models.ForeignKey(
         "wagtailimages.Image",
